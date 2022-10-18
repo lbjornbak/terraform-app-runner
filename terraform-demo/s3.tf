@@ -5,6 +5,11 @@ terraform {
       version = "4.33.0"
     }
   }
+  backend "s3" {
+    bucket = "pgr301-2021-terraform-state"
+    key    = "kinglors/apprunner-lab.state"
+    region = "eu-north-1"
+  }
 }
 
 resource "aws_s3_bucket" "mybucket" {
@@ -21,5 +26,6 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "example" {
 }
 
 variable "bucket_name" {
+  default = "larsman-s3-bucket"
   type = string
 }
